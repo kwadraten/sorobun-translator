@@ -48,7 +48,7 @@ class Model:
             model = self.reasoning_model
 
         try:  
-            response = client.ChatCompletion.create(  
+            response = client.chat.completions.create(  
                 model= model,
                 messages=messages,
                 max_tokens=5000,  
