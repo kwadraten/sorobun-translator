@@ -4,4 +4,6 @@ Coded by Python. Use a sqlite database to store words' definition from professio
 
 ## Usage
 
-> python src/entry.py -f [inputted text file] -o [outputted text file]
+```sh
+python src/entry.py -f [inputted text file] -o [outputted text file]
+```
