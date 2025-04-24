@@ -1,6 +1,9 @@
 # user defined content
 /data_gen
 config.json
+test.txt
+result.txt
+dictionary.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
