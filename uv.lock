@@ -121,6 +121,20 @@ wheels = [
 ]
 
 [[package]]
+name = "mecab-python3"
+version = "1.0.10"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/df/eeb4e250fc0a69b0a2deed5573f2c8d8445cf643cb9ecf25674f8186880f/mecab_python3-1.0.10.tar.gz", hash = "sha256:21cd4416043e9a993fcfb986dde93e4366a07543dd95849b5ef2e50c9a9afcce", size = 78691 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/52/16/750ae35344f62497d4b894ae49941ebfb4ea6166219e39349dc51e16e238/mecab_python3-1.0.10-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:711ee9a7ba27aa6988b580951671e5966d7b9aa16cae453d17a5e149d295941c", size = 523860 },
+    { url = "https://files.pythonhosted.org/packages/71/82/98c753089eb42793ada8b92b4f616cdf004637fe61f77eb81adbe12cf274/mecab_python3-1.0.10-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:1cc4e90d23b57e1ea4bf0ecc57cf7cdbc432164398b67ad113256bc20ed52154", size = 487672 },
+    { url = "https://files.pythonhosted.org/packages/81/06/c132d772cf14b9ec5dd94eba03dfef2aad8db14ec9c614a3717ef657b877/mecab_python3-1.0.10-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:4b90261aa514f29c6e05bd99717a02eeb9be3d7ea0a0be01f65ce0d86c572c68", size = 484283 },
+    { url = "https://files.pythonhosted.org/packages/7d/ee/2772cb0ba2fff59504c7ed715da626187c0f115542953f76e035531d040e/mecab_python3-1.0.10-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:894d87d708545314359cfd1b062238c2756d8f985b4c3fe7cabdf111f533a367", size = 568847 },
+    { url = "https://files.pythonhosted.org/packages/8d/99/5bb828c0aeb3f02657f237304aab296526aa5463fe4f6c23c3008d536478/mecab_python3-1.0.10-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7bd7b86dd39a068dadf06ba8dd717ec1defb2cea181c5cbc6c54b1adb6dd0d4b", size = 591008 },
+    { url = "https://files.pythonhosted.org/packages/cd/e2/c752bc635c21fc45a02844e52bb61799f93c5cef4292ea5a252e11818093/mecab_python3-1.0.10-cp313-cp313-win_amd64.whl", hash = "sha256:3528ef81cc4c9506ae3b273958fe2314aa1022a8db64640e631e09fd3e1af97b", size = 503240 },
+]
+
+[[package]]
 name = "openai"
 version = "1.75.0"
 source = { registry = "https://pypi.org/simple" }
@@ -196,11 +210,15 @@ name = "sorobun-translator"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "mecab-python3" },
     { name = "openai" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "openai", specifier = ">=1.75.0" }]
+requires-dist = [
+    { name = "mecab-python3", specifier = ">=1.0.10" },
+    { name = "openai", specifier = ">=1.75.0" },
+]
 
 [[package]]
 name = "tqdm"

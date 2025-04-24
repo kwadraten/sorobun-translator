@@ -8,5 +8,6 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "mecab-python3>=1.0.10",
     "openai>=1.75.0",
 ]
