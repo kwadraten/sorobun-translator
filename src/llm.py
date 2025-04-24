@@ -1,29 +1,21 @@
 from openai import OpenAI
 from openai import OpenAIError, APIConnectionError
-from pathlib import Path
-import os
 import logging
-import json
+from config import Config
 
 class Model:
 
-    def __init__(self, config_path: Path | None = None) -> None:
-        self.config_path = Path(os.path.abspath(".")) / Path("config.json")
-        if config_path:
-            self.config_path = config_path
-        with open(self.config_path, "rt", encoding="utf-8") as config_file:
-            config = json.load(config_file)
-
-        self.base_client = OpenAI(api_key=config["base_key"], base_url=config["base_api"])
+    def __init__(self) -> None:
+        self.base_client = OpenAI(api_key=Config["base_key"], base_url=Config["base_api"])
         
-        if config.get("reasoning_api") and config.get("reasoning_key"):
-            self.reasoning_client = OpenAI(api_key=config["reasoning_key"], base_url=config["reasoning_key"])
+        if Config.get("reasoning_api") and Config.get("reasoning_key"):
+            self.reasoning_client = OpenAI(api_key=Config["reasoning_key"], base_url=Config["reasoning_key"])
         else:
             self.reasoning_client = self.base_client
         
-        self.base_model = config["base_model"]
-        if config.get("reasoning_model"):
-            self.reasoning_model = config["reasoning_model"]
+        self.base_model = Config["base_model"]
+        if Config.get("reasoning_model"):
+            self.reasoning_model = Config["reasoning_model"]
 
         self.check_availability()
 
@@ -31,6 +23,7 @@ class Model:
         try:
             self.base_client.models.list()
             self.reasoning_client.models.list()
+            logging.info("LLM Platform API is available.")
         except APIConnectionError as e:
             logging.error(f"Availability Check Failed. Please check your api url and secret key: {e}")
         except Exception as e:
