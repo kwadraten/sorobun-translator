@@ -22,6 +22,12 @@ parser.add_argument("-l", "--logging", help=(
                         )
                     )
 
+parser.add_argument("-m", "--mecab", help=(
+                            "The path of mecab dictionary directory. If not exists, "
+                            "use default FMM algorithm."
+                        )
+)
+
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -32,7 +38,8 @@ if __name__ == "__main__":
     initialize(args.conf, inject={
         "logging_level": args.logging,
         "target_language": args.target,
-        "database_path": args.database
+        "database_path": args.database,
+        "mecab_dictionary_path": args.mecab
     })
 
     # input sorobun text

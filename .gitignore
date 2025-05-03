@@ -1,6 +1,7 @@
 # user defined content
 /data_gen
 config.json
+config_backup.json
 test.txt
 result.txt
 dictionary.db
