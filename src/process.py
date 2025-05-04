@@ -1,10 +1,10 @@
 import logging
 from typing import List, Tuple
-from prompt import analyze_prompt, lookup_prompt, reason_prompt
-from llm import Model
-from db import Db
-from config import Config
-from seg import Tagger
+from .prompt import analyze_prompt, lookup_prompt, reason_prompt
+from .llm import Model
+from .db import Db
+from .config import Config
+from .seg import Tagger
 
 # -------------------------
 # !! global variables !!

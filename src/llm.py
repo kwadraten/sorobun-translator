@@ -1,7 +1,7 @@
 from openai import OpenAI
 from openai import OpenAIError, APIConnectionError
 import logging
-from config import Config
+from .config import Config
 
 class Model:
 

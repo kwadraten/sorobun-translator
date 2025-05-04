@@ -1,7 +1,7 @@
 import logging
 from typing import List
-from db import Db
-from config import Config
+from .db import Db
+from .config import Config
 
 class TrieNode:
     def __init__(self) -> None:

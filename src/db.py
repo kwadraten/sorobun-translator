@@ -1,7 +1,7 @@
 import os
 import logging
 from typing import List, Tuple
-from config import Config
+from .config import Config
 
 class Db:
 

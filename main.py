@@ -37,7 +37,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # initalize with config
-    from config import initialize
+    from src.config import initialize
     
     initialize(args.conf, inject={
         "logging_level": args.logging,
@@ -55,7 +55,7 @@ if __name__ == "__main__":
         sorobun = input(">>> ")
     
     # output translation
-    from process import translate
+    from src.process import translate
 
     result = translate(sorobun)
     if args.output:
