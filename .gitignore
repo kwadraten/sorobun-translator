@@ -5,6 +5,8 @@ config_backup.json
 test.txt
 result.txt
 dictionary.db
+test
+rag_db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
