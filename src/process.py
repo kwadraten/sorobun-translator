@@ -4,39 +4,27 @@ from prompt import analyze_prompt, lookup_prompt, reason_prompt
 from llm import Model
 from db import Db
 from config import Config
-import MeCab
+from seg import Tagger
 
 # -------------------------
 # !! global variables !!
 MODEL = Model()
 DATABASE = Db()
-if Config.get("mecab_dictionary_path"):
-    if Config["mecab_dictionary_path"][-1] != '/':
-        dict_path = Config["mecab_dictionary_path"] + '/' 
-    else:
-        dict_path = Config["mecab_dictionary_path"]
-    argument = f"-r {dict_path + "dicrc"} -d {dict_path}"
-    logging.info(f"The cli argument for mecab is: {argument}")
-    TAGGER = MeCab.Tagger(argument)
-else:
-    logging.error("Mecab Dictionary Not Found. Please Check the dictionary path.")
-    raise RuntimeError("Mecab Dictionary Not Found.")
+TAGGER = Tagger()
 # -------------------------
 
 
 def text_segment(sorobun: str) -> List[str]:
-    tags = TAGGER.parse(sorobun)
-    words = [row.split('\t')[0] for row in tags.split("\n")]
-    words.remove("EOS")
-    words.remove("")
+    words = TAGGER.parse(sorobun)
     words = list(set(words))
     return words
 
 def definition_formatting(query_results: List[Tuple[str, str]]) -> List[str]:
     result = []
     for w, d in query_results:
+        d = d.replace("\n", "")
         result.append(
-            f"The word '{w}' means: {d} \n"
+            f"Dictionary Content related to the word '{w}': {d} \n"
         )
     return result
 

@@ -12,7 +12,11 @@ parser.add_argument("-o", "--output", help="The path to output.")
 
 parser.add_argument("-c", "--conf", help="The path of config(.json) file.")
 
-parser.add_argument("-d", "--database", help="The path of sqlite database file.")
+parser.add_argument("-d", "--database", help=(
+                            "The path of sqlite database file or kuzu database "
+                            "directory path."
+                        )
+)
 
 parser.add_argument("-t", "--target", help="The target language of translation.")
 
