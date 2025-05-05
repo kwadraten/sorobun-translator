@@ -6,8 +6,9 @@ test.txt
 result.txt
 dictionary.db
 test
-rag_db
+# rag_db
 output
+batch.ps1
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

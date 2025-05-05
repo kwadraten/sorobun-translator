@@ -1,0 +1,8 @@
+{
+    "base_api": "ANY PROVIDER'S ENDPOINT (FOR EXAMPLE: https://openrouter.ai/api/v1)",
+    "base_key": "YOUR API KEY",
+    "base_model": "google/gemini-2.0-flash-001",
+    "reasoning_model": "google/gemini-2.0-flash-001",
+    "database_path": "./rag_db",
+    "target_language": "chinese (simplified)"
+}
