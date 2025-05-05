@@ -3,7 +3,6 @@ from typing import List, Tuple
 from .prompt import analyze_prompt, lookup_prompt, reason_prompt
 from .llm import Model
 from .db import Db
-from .config import Config
 from .seg import Tagger
 
 # -------------------------
@@ -42,8 +41,10 @@ def analyze(sorobun: str) -> str:
     return result
 
 def lookup_loop(output_history: str, definitions_list: List[str]) -> str:
-    step = 5
-    batch_number = int(len(definitions_list) / step) + 1
+    step = 8
+    batch_number = int(len(definitions_list) / step)
+    if len(definitions_list) % step > 0:
+        batch_number += 1
     temp_result = output_history
 
     for num in range(batch_number):
@@ -59,8 +60,8 @@ def lookup_loop(output_history: str, definitions_list: List[str]) -> str:
 
     return temp_result
 
-def reason(output_history: str, target_language: str) -> str:
-    prompt = reason_prompt(output_history, target_language)
+def reason(output_history: str) -> str:
+    prompt = reason_prompt(output_history)
     logging.info(f"the prompt of the third stage is:\n{prompt}")
     result = MODEL.predict(prompt, is_reasoning=True)
     logging.info(f"the result of the third stage is:\n{result}")
@@ -71,6 +72,6 @@ def translate(sorobun: str) -> str:
     analyze_result = analyze(sorobun)
     definitions_list = query_definitions(sorobun)
     analysis_with_notes = lookup_loop(analyze_result, definitions_list)
-    translation = reason(analysis_with_notes, Config["target_language"])
+    translation = reason(analysis_with_notes)
 
     return translation
